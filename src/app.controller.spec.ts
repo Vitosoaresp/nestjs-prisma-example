@@ -1,8 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from './app.controller';
-import { PrismaService } from './database/prisma.service';
-import { PrismaUserRepository } from './repositories/prisma/prisma-user-repository';
-import { UserRepository } from './repositories/user-repository';
 
 describe('AppController', () => {
   let appController: AppController;
@@ -10,13 +7,7 @@ describe('AppController', () => {
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
       controllers: [AppController],
-      providers: [
-        PrismaService,
-        {
-          provide: UserRepository,
-          useClass: PrismaUserRepository,
-        },
-      ],
+      providers: [],
     }).compile();
 
     appController = app.get<AppController>(AppController);
